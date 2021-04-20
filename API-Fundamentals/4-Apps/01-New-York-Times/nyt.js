@@ -24,6 +24,7 @@ function fetchResults(e) {
     e.preventDefault();
 
     url = `${baseURL}?api-key=${key}&page=${pageNumber}&q=${searchTerm.nodeValue}`;
+    console.log(url);
 
     if (startDate.value !== '') {
         console.log(startDate.value)
