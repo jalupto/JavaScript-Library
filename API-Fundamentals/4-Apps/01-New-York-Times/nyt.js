@@ -23,7 +23,7 @@ previousBtn.addEventListener('click', previousPage);
 function fetchResults(e) {
     e.preventDefault();
 
-    url = `${baseURL}?api-key=${key}&page=${pageNumber}&q=${searchTerm.nodeValue}`;
+    url = `${baseURL}?api-key=${key}&page=${pageNumber}&q=${searchTerm.value}`;
     console.log(url);
 
     if (startDate.value !== '') {
