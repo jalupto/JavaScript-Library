@@ -34,14 +34,14 @@ function fetchResults(e) {
     if (endDate.value !== '') {
         url += '&end_date=' + endDate.value;
     };
-    
+
     fetch(url)
         .then(function (result) {
-        return result.json();
-    })
-    .then(function (json) {
-        displayResults(json);
-    });
+            return result.json();
+        })
+        .then(function (json) {
+            displayResults(json);
+        });
 }
 
 function displayResults(json) {
@@ -49,6 +49,7 @@ function displayResults(json) {
         section.removeChild(section.firstChild);
     }
     let articles = json.response.docs;
+    console.log(articles);
 
     if (articles.length === 0) {
         console.log("No Results");
@@ -106,24 +107,24 @@ function displayResults(json) {
             heading.appendChild(link);
             article.appendChild(para);
             article.appendChild(clearfix);
+            clearfix.appendChild(img);
             section.appendChild(article);
             nav.style.display = 'none'; //hides the nav display if less than 10 items are in the array
         }
     };
+};
+function nextPage(e) {
+    pageNumber++;
+    fetchResults(e);
+    console.log("Page number:", pageNumber);
+};
 
-    function nextPage(e) {
-        pageNumber++;
-        fetchResults(e);
-        console.log("Page number:", pageNumber);
-    };
-
-    function previousPage(e) {
-        if (pageNumber > 0) {
-            pageNumber--;
-        } else {
-            return;
-        }
-        fetchResults(e);
-        console.log("Page:", pageNumber);
+function previousPage(e) {
+    if (pageNumber > 0) {
+        pageNumber--;
+    } else {
+        return;
     }
+    fetchResults(e);
+    console.log("Page:", pageNumber);
 };
